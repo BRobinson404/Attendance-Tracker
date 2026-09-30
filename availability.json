@@ -1,7 +1,1 @@
-[
-  { "name": "Test Person A", "out": true, "reason": "PTO" },
-  { "name": "Test Person B", "out": true, "reason": "Sick" },
-  { "name": "Test Person C", "out": true, "reason": "Installs" },
-  { "name": "Test Person D", "out": true, "reason": "Out of Town" },
-  { "name": "Test Person E", "out": false, "reason": "" }
-]
+[]
