@@ -107,9 +107,55 @@
         font-size: 16px;
       }
 
+      /*=========================
+          MOBILE VIEWPORT
+        ========================= */
       @media (max-width: 768px) {
-        * {
-          display: none !important;
+          body {
+          overflow-y: auto !important;
+        }
+          .header {
+          flex-direction: column !important;
+          text-align: center !important;
+          padding: 16px !important;
+          gap: 8px !important;
+        }
+          .header h1 {
+          font-size: 24px !important;
+        }
+          .header .date {
+          font-size: 16px !important;
+        }
+          .container {
+          padding: 16px !important;
+          padding-bottom: 70px !important;
+        }
+          .grid {
+          grid-template-columns: 1fr !important;
+          gap: 12px !important;
+        }
+          .card {
+          padding: 18px !important;
+        }
+          .name {
+          font-size: 24px !important;
+        }
+          .reason {
+          font-size: 18px !important;
+        }
+          div.big {
+          font-size: 24px !important;
+          color: red !important;
+        }
+          div.sub {
+          font-size: 18px !important;
+        }
+          .allclear {
+          padding: 40px 15px !important;
+        }
+          .footer {
+          font-size: 12px !important;
+          padding: 8px !important;
         }
       }
     </style>
