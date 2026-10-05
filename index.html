@@ -1,187 +1,288 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team Availability</title>
-<style>
-  * { box-sizing: border-box; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Availability</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  body {
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #0f172a;
-    color: #fff;
-    overflow: hidden;
-  }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #0f172a;
+        color: #fff;
+        overflow: hidden;
+      }
 
-  .header {
-    background: #1e293b;
-    padding: 24px 32px;
-    border-bottom: 4px solid #334155;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+      .header {
+        background: #1e293b;
+        padding: 24px 32px;
+        border-bottom: 4px solid #334155;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-  .header h1 {
-    margin: 0;
-    font-size: 46px;
-    letter-spacing: 2px;
-  }
+      .header h1 {
+        margin: 0;
+        font-size: 46px;
+        letter-spacing: 2px;
+      }
 
-  .header .date {
-    color: #cbd5e1;
-    font-size: 22px;
-    text-align: right;
-  }
+      .header .date {
+        color: #cbd5e1;
+        font-size: 22px;
+        text-align: right;
+      }
 
-  .container { padding: 28px 32px; }
+      .container {
+        padding: 28px 32px;
+      }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 22px;
-  }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 22px;
+      }
 
-  .card {
-    border-radius: 16px;
-    padding: 24px 28px;
-    box-shadow: 0 6px 18px rgba(0,0,0,.35);
-  }
+      .card {
+        border-radius: 16px;
+        padding: 24px 28px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      }
 
-  .name { font-size: 36px; font-weight: 700; line-height: 1.1; }
-  .reason { font-size: 24px; margin-top: 12px; opacity: .95; }
+      .name {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      .reason {
+        font-size: 24px;
+        margin-top: 12px;
+        opacity: 0.95;
+      }
 
-  /* reason colors */
-  .r-pto         { background: #991b1b; }
-  .r-sick        { background: #b45309; }
-  .r-installs    { background: #1d4ed8; }
-  .r-outoftown   { background: #0369a1; }
-  .r-default     { background: #475569; }
+      /* reason colors */
+      .r-pto {
+        background: #991b1b;
+      }
+      .r-sick {
+        background: #b45309;
+      }
+      .r-installs {
+        background: #1d4ed8;
+      }
+      .r-outoftown {
+        background: #0369a1;
+      }
+      .r-default {
+        background: #475569;
+      }
 
-  .allclear {
-    text-align: center;
-    padding: 90px 20px;
-  }
-  .allclear .big { font-size: 68px; font-weight: 700; color: #22c55e; }
-  .allclear .sub { font-size: 28px; color: #cbd5e1; margin-top: 14px; }
+      .allclear {
+        text-align: center;
+        padding: 90px 20px;
+      }
+      .allclear .big {
+        font-size: 68px;
+        font-weight: 700;
+        color: #22c55e;
+      }
+      .allclear .sub {
+        font-size: 28px;
+        color: #cbd5e1;
+        margin-top: 14px;
+      }
 
-  .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #1e293b;
-    text-align: center;
-    padding: 12px;
-    color: #94a3b8;
-    font-size: 16px;
-  }
-</style>
-</head>
-<body>
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #1e293b;
+        text-align: center;
+        padding: 12px;
+        color: #94a3b8;
+        font-size: 16px;
+      }
 
-<div class="header">
-  <h1>WHO'S OUT TODAY</h1>
-  <div class="date" id="today"></div>
-</div>
+      /*=========================
+          MOBILE VIEWPORT
+        ========================= */
+      @media screen and (max-width: 768px) {
+          body {
+          overflow-y: auto;
+        }
+          .header {
+          flex-direction: column;
+          text-align: center;
+          padding: 16px;
+          gap: 8px;
+        }
+          .header h1 {
+          font-size: 30px;
+          letter-spacing: 1px;
+        }
+          .header .date {
+          font-size: 16px;
+          text-align: center;
+        }
+          .container {
+          padding: 16px;
+          padding-bottom: 70px;
+        }
+          .grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+          .card {
+          padding: 18px;
+        }
+          .name {
+          font-size: 24px;
+        }
+          .reason {
+          font-size: 18px;
+        }
+          .allclear {
+          padding: 40px 15px;
+        }
+          .allclear .big {
+          font-size: 36px;
+        }
+          .allclear .sub {
+          font-size: 18px;
+        }
+          .footer {
+          font-size: 12px;
+          padding: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>WHO'S OUT TODAY</h1>
+      <div class="date" id="today"></div>
+    </div>
 
-<div class="container">
-  <div id="board"></div>
-</div>
+    <div class="container">
+      <div id="board"></div>
+    </div>
 
-<div class="footer" id="updated">Loading…</div>
+    <div class="footer" id="updated">Loading…</div>
 
-<script>
-// ---- CONFIG -------------------------------------------------
-const DATA_URL       = 'availability.json';
-const REFRESH_MS     = 60000;   // re-check every 60 seconds
-// -------------------------------------------------------------
+    <script>
+      // ---- CONFIG -------------------------------------------------
+      const DATA_URL = "availability.json";
+      const REFRESH_MS = 60000; // re-check every 60 seconds
+      // -------------------------------------------------------------
 
-function reasonClass(reason) {
-  const key = (reason || '').toLowerCase().replace(/[^a-z]/g, '');
-  const map = {
-    pto: 'r-pto',
-    sick: 'r-sick',
-    installs: 'r-installs',
-    outoftown: 'r-outoftown'
-  };
-  return map[key] || 'r-default';
-}
+      function reasonClass(reason) {
+        const key = (reason || "").toLowerCase().replace(/[^a-z]/g, "");
+        const map = {
+          pto: "r-pto",
+          sick: "r-sick",
+          installs: "r-installs",
+          outoftown: "r-outoftown",
+        };
+        return map[key] || "r-default";
+      }
 
-// SharePoint choice columns sometimes arrive as { Value: "PTO" }
-function readReason(item) {
-  const r = item.reason;
-  if (r && typeof r === 'object' && 'Value' in r) return r.Value;
-  return r || '';
-}
+      // SharePoint choice columns sometimes arrive as { Value: "PTO" }
+      function readReason(item) {
+        const r = item.reason;
+        if (r && typeof r === "object" && "Value" in r) return r.Value;
+        return r || "";
+      }
 
-// Yes/No may arrive as true, "true", "yes", or 1
-function isOut(item) {
-  const v = item.out;
-  if (typeof v === 'boolean') return v;
-  if (typeof v === 'number')  return v === 1;
-  return String(v).toLowerCase() === 'true' || String(v).toLowerCase() === 'yes';
-}
+      // Yes/No may arrive as true, "true", "yes", or 1
+      function isOut(item) {
+        const v = item.out;
+        if (typeof v === "boolean") return v;
+        if (typeof v === "number") return v === 1;
+        return (
+          String(v).toLowerCase() === "true" ||
+          String(v).toLowerCase() === "yes"
+        );
+      }
 
-function render(list) {
-  const board = document.getElementById('board');
-  const out = (list || []).filter(isOut);
+      function render(list) {
+        const board = document.getElementById("board");
+        const out = (list || []).filter(isOut);
 
-  if (out.length === 0) {
-    board.innerHTML =
-      '<div class="allclear">' +
-        '<div class="big">EVERYONE IS IN</div>' +
-        '<div class="sub">No absences reported today</div>' +
-      '</div>';
-    return;
-  }
+        if (out.length === 0) {
+          board.innerHTML =
+            '<div class="allclear">' +
+            '<div class="big">EVERYONE IS IN</div>' +
+            '<div class="sub">No absences reported today</div>' +
+            "</div>";
+          return;
+        }
 
-  const cards = out.map(function (p) {
-    const reason = readReason(p);
-    return '<div class="card ' + reasonClass(reason) + '">' +
-             '<div class="name">' + (p.name || 'Unknown') + '</div>' +
-             '<div class="reason">' + (reason || 'Out') + '</div>' +
-           '</div>';
-  }).join('');
+        const cards = out
+          .map(function (p) {
+            const reason = readReason(p);
+            return (
+              '<div class="card ' +
+              reasonClass(reason) +
+              '">' +
+              '<div class="name">' +
+              (p.name || "Unknown") +
+              "</div>" +
+              '<div class="reason">' +
+              (reason || "Out") +
+              "</div>" +
+              "</div>"
+            );
+          })
+          .join("");
 
-  board.innerHTML = '<div class="grid">' + cards + '</div>';
-}
+        board.innerHTML = '<div class="grid">' + cards + "</div>";
+      }
 
-function stamp(msg) {
-  document.getElementById('updated').textContent = msg;
-}
+      function stamp(msg) {
+        document.getElementById("updated").textContent = msg;
+      }
 
-function load() {
-  // cache-buster: GitHub Pages caches aggressively
-  fetch(DATA_URL + '?t=' + Date.now(), { cache: 'no-store' })
-    .then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    })
-    .then(function (data) {
-      render(data);
-      stamp('Last updated ' + new Date().toLocaleTimeString('en-US', {
-        hour: 'numeric', minute: '2-digit'
-      }));
-    })
-    .catch(function (err) {
-      stamp('Unable to load availability data (' + err.message + ')');
-    });
-}
+      function load() {
+        // cache-buster: GitHub Pages caches aggressively
+        fetch(DATA_URL + "?t=" + Date.now(), { cache: "no-store" })
+          .then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            render(data);
+            stamp(
+              "Last updated " +
+                new Date().toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "2-digit",
+                }),
+            );
+          })
+          .catch(function (err) {
+            stamp("Unable to load availability data (" + err.message + ")");
+          });
+      }
 
-function setDate() {
-  document.getElementById('today').textContent =
-    new Date().toLocaleDateString('en-US', {
-      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
-    });
-}
+      function setDate() {
+        document.getElementById("today").textContent =
+          new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          });
+      }
 
-setDate();
-load();
-setInterval(load, REFRESH_MS);
-setInterval(setDate, 60000);   // keeps the date correct past midnight
-</script>
-
-</body>
+      setDate();
+      load();
+      setInterval(load, REFRESH_MS);
+      setInterval(setDate, 60000); // keeps the date correct past midnight
+    </script>
+  </body>
 </html>
